@@ -21,7 +21,7 @@ export const Top: NextPage = () => {
 
   // フォーム送信関数
   const onSubmit: SubmitHandler<any> = async (data: any) => {
-    // console.log('---- onSubmit: 送信')
+    console.log('---- onSubmit: 送信', data)
   }
 
   return (
@@ -32,20 +32,25 @@ export const Top: NextPage = () => {
         <form action="#" className={styles['form']} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles['form--item']}>
             <label className={styles['form--label']}>名前</label>
-            <input type={'text'} />
+            <input type={'text'} {...register('user.name')} />
+            <span className={styles['error-text']}>{formState.errors.user?.name?.message}</span>
           </div>
           <div className={styles['form--item']}>
             <label className={styles['form--label']}>メールアドレス</label>
-            <input type={'text'} />
+            <input type={'text'} {...register('user.mail')} />
+            <span>{formState.errors.user?.mail?.message}</span>
           </div>
           <div className={styles['form--item']}>
             <label className={styles['form--label']}>電話番号</label>
-            <input type={'text'} />
+            <input type={'text'} {...register('user.phoneNumber')} />
+            <span>{formState.errors.user?.phoneNumber?.message}</span>
           </div>
           <div className={styles['form--item']}>
-            <label className={styles['form--label']}>フリーテキスト</label>
-            <textarea />
+            <label className={styles['form--label']}>パスワード</label>
+            <input type={'text'} {...register('user.password')} />
+            <span>{formState.errors.user?.password?.message}</span>
           </div>
+          <button>送信</button>
         </form>
       </div>
     </div>
